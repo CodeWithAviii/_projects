@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India's Independence Day | Celebrating 75 Years of Freedom</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <style>
+        :root {
+            --saffron: #FF9933;
+            --white: #FFFFFF;
+            --green: #138808;
+            --navy-blue: #000080;
+            --light-blue: #4D4DFF;
+            --gold: #FFD700;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            background: linear-gradient(135deg, #f9f9f9 0%, #e6f0ff 100%);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(90deg, var(--saffron) 0%, var(--white) 50%, var(--green) 100%);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--navy-blue);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--saffron);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--navy-blue);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--navy-blue);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Hero Section - Fixed */
+        .hero {
+            height: 100vh;
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
+                url('https://images.unsplash.com/photo-1624948465027-6f9b51067557?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+        }
+        
+        .hero-content {
+            color: white;
+            z-index: 10;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.8rem;
+            margin: 0 auto 30px;
+            max-width: 800px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--saffron);
+            color: var(--navy-blue);
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: 2px solid var(--saffron);
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: var(--saffron);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--saffron);
+            border: 2px solid var(--saffron);
+        }
+        
+        .btn-outline:hover {
+            background: var(--saffron);
+            color: var(--navy-blue);
+        }
+        
+        .chakra {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, transparent 60%, var(--navy-blue) 60%);
+            border-radius: 50%;
+            border: 4px solid var(--navy-blue);
+            animation: rotate 20s linear infinite;
+            opacity: 0.5;
+        }
+        
+        .chakra:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: var(--navy-blue);
+            border-radius: 50%;
+        }
+        
+        .chakra-1 {
+            top: 15%;
+            left: 20%;
+        }
+        
+        .chakra-2 {
+            bottom: 10%;
+            right: 15%;
+        }
+        
+        /* Timeline Section */
+        .timeline-section {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, var(--white) 0%, #f0f8ff 100%);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--navy-blue);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--saffron) 0%, var(--green) 100%);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--saffron) 0%, var(--green) 100%);
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            margin-bottom: 50px;
+            position: relative;
+            width: 100%;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            padding-right: calc(50% + 30px);
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) {
+            padding-left: calc(50% + 30px);
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--navy-blue);
+            top: 15px;
+            left: 50%;
+            margin-left: -10px;
+            z-index: 1;
+            border: 3px solid var(--gold);
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+        }
+        
+        .timeline-content h3 {
+            color: var(--navy-blue);
+            margin-bottom: 15px;
+        }
+        
+        .year {
+            display: inline-block;
+            background: var(--saffron);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        /* Gallery Section */
+        .gallery-section {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, #f0f8ff 0%, var(--white) 100%);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        /* Quotes Section */
+        .quotes-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--saffron) 0%, var(--green) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quotes-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+        
+        .quote {
+            font-size: 1.8rem;
+            font-weight: 600;
+            font-style: italic;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+        
+        .author {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        
+        .dove {
+            position: absolute;
+            font-size: 3rem;
+            color: white;
+            opacity: 0.7;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--navy-blue);
+            color: white;
+            padding: 70px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 300px;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--saffron);
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--saffron);
+            transform: translateY(-5px);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--saffron);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Countdown Timer */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .countdown-item {
+            margin: 0 10px;
+            text-align: center;
+            min-width: 90px;
+        }
+        
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.1);
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            margin: 0 auto 10px;
+        }
+        
+        .countdown-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.4rem;
+            }
+            
+            .timeline:before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                padding-left: 70px !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+            
+            .timeline-dot {
+                left: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background: linear-gradient(90deg, var(--saffron) 0%, var(--white) 50%, var(--green) 100%);
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: clip-path 0.4s ease;
+            }
+            
+            .nav-links.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hamburger {
+                display: block;
+                font-size: 1.8rem;
+                color: var(--navy-blue);
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .quote {
+                font-size: 1.4rem;
+            }
+            
+            .countdown-item {
+                margin: 5px;
+                min-width: 70px;
+            }
+            
+            .countdown-number {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        .flag {
+            position: absolute;
+            width: 120px;
+            height: 80px;
+            background: linear-gradient(to bottom, var(--saffron) 0%, var(--saffron) 33%, var(--white) 33%, var(--white) 66%, var(--green) 66%, var(--green) 100%);
+            top: 20px;
+            right: 20px;
+            border-radius: 5px;
+            animation: wave 3s infinite linear;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 5;
+        }
+        
+        .flag:before {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: radial-gradient(circle, transparent 50%, var(--navy-blue) 50%);
+            border: 2px solid var(--navy-blue);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        @keyframes wave {
+            0%, 100% {
+                transform: rotate(0deg) translateY(0);
+            }
+            25% {
+                transform: rotate(2deg) translateY(-5px);
+            }
+            50% {
+                transform: rotate(0deg) translateY(0);
+            }
+            75% {
+                transform: rotate(-2deg) translateY(5px);
+            }
+        }
+        
+        .audio-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--saffron);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--navy-blue);
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+        
+        .audio-control:hover {
+            transform: scale(1.1);
+            background: var(--gold);
+        }
+    </style>
+</head>
+<body>
+    <!-- Audio Player -->
+    <div class="audio-control" id="audioControl">
+        <i class="fas fa-volume-up"></i>
+    </div>
+    <audio id="anthem" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-flag"></i>
+                    <span>Azadi@75</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#timeline">History</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#quotes">Quotes</a></li>
+                    <li><a href="#footer">About</a></li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section - Fixed -->
+    <section class="hero" id="home">
+        <div class="chakra chakra-1"></div>
+        <div class="chakra chakra-2"></div>
+        <div class="flag"></div>
+        
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+            <h1>Happy Independence Day!</h1>
+            <p>Celebrating 75 years of freedom, unity, and diversity</p>
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+            <div class="hero-buttons">
+                <a href="#timeline" class="btn">Explore History</a>
+                <a href="#gallery" class="btn btn-outline">View Gallery</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Timeline Section -->
+    <section class="timeline-section" id="timeline">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Journey to Freedom</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="year">1857</span>
+                        <h3>First War of Independence</h3>
+                        <p>The Indian Rebellion of 1857 was a major uprising against the rule of the British East India Company. Though unsuccessful, it marked the beginning of the organized struggle for independence.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="year">1885</span>
+                        <h3>Formation of Indian National Congress</h3>
+                        <p>The Indian National Congress was founded, becoming the primary organization leading the independence movement through peaceful and constitutional means.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="year">1919</span>
+                        <h3>Jallianwala Bagh Massacre</h3>
+                        <p>British troops fired on a large crowd of unarmed Indians in Amritsar, killing hundreds. This event galvanized the independence movement.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="year">1930</span>
+                        <h3>Salt March</h3>
+                        <p>Mahatma Gandhi led the Dandi Salt March, a 24-day non-violent protest against the British salt monopoly. This became a pivotal event in the civil disobedience movement.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="year">1942</span>
+                        <h3>Quit India Movement</h3>
+                        <p>Mahatma Gandhi launched the Quit India Movement, demanding an end to British rule. The movement gained massive public support across the country.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="year">1947</span>
+                        <h3>Independence Achieved</h3>
+                        <p>After decades of struggle, India finally gained independence on August 15, 1947. Jawaharlal Nehru became the first Prime Minister of independent India.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">India's Pride</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1624948465027-6f9b51067557?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Indian Flag">
+                    <div class="gallery-caption">Tricolor Flag</div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Taj Mahal">
+                    <div class="gallery-caption">Taj Mahal</div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1586348943529-beaae6c28db9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="India Gate">
+                    <div class="gallery-caption">India Gate</div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Golden Temple">
+                    <div class="gallery-caption">Golden Temple</div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400">
+                    <img src="https://images.unsplash.com/photo-1598940603846-a1edd0ef5274?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Red Fort">
+                    <div class="gallery-caption">Red Fort</div>
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="500">
+                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Indian Cuisine">
+                    <div class="gallery-caption">Indian Cuisine</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Quotes Section -->
+    <section class="quotes-section" id="quotes">
+        <div class="dove" style="top: 20%; left: 10%;">🕊️</div>
+        <div class="dove" style="top: 30%; right: 15%;">🕊️</div>
+        <div class="dove" style="bottom: 20%; left: 20%;">🕊️</div>
+        
+        <div class="container">
+            <div class="quotes-container">
+                <h2 class="section-title" data-aos="fade-up">Inspirational Words</h2>
+                <div class="quote" id="quote">
+                    "Freedom is never dear at any price. It is the breath of life. What would a man not pay for living?"
+                </div>
+                <div class="author" id="author">- Mahatma Gandhi</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About This Project</h3>
+                    <p>This website is a tribute to India's 75 years of independence. Created to celebrate our freedom, honor our heroes, and showcase our rich cultural heritage.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#timeline">Historical Timeline</a></li>
+                        <li><a href="#gallery">Cultural Gallery</a></li>
+                        <li><a href="#quotes">Freedom Fighters' Quotes</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> contact@independence-day.in</p>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-map-marker-alt"></i> New Delhi, India</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 India's Independence Day Celebration. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+        
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Countdown Timer to August 15
+        function updateCountdown() {
+            const now = new Date();
+            let targetYear = now.getFullYear();
+            
+            // If August 15 has already passed this year, target next year
+            if (now.getMonth() > 7 || (now.getMonth() === 7 && now.getDate() > 15)) {
+                targetYear++;
+            }
+            
+            const targetDate = new Date(targetYear, 7, 15); // August is month 7 (0-indexed)
+            const diff = targetDate - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
+        
+        // Rotating Quotes
+        const quotes = [
+            {
+                text: "Freedom is not worth having if it does not include the freedom to make mistakes.",
+                author: "Mahatma Gandhi"
+            },
+            {
+                text: "Swaraj is my birthright, and I shall have it.",
+                author: "Bal Gangadhar Tilak"
+            },
+            {
+                text: "Give me blood and I will give you freedom!",
+                author: "Subhash Chandra Bose"
+            },
+            {
+                text: "A nation's culture resides in the hearts and in the soul of its people.",
+                author: "Mahatma Gandhi"
+            },
+            {
+                text: "If yet your blood does not rage, then it is water that flows in your veins.",
+                author: "Chandra Shekhar Azad"
+            }
+        ];
+        
+        let currentQuote = 0;
+        const quoteElement = document.getElementById('quote');
+        const authorElement = document.getElementById('author');
+        
+        function rotateQuote() {
+            quoteElement.style.opacity = 0;
+            authorElement.style.opacity = 0;
+            
+            setTimeout(() => {
+                currentQuote = (currentQuote + 1) % quotes.length;
+                quoteElement.textContent = quotes[currentQuote].text;
+                authorElement.textContent = `- ${quotes[currentQuote].author}`;
+                
+                quoteElement.style.opacity = 1;
+                authorElement.style.opacity = 1;
+            }, 500);
+        }
+        
+        // Rotate quotes every 8 seconds
+        setInterval(rotateQuote, 8000);
+        
+        // Audio Control
+        const audioControl = document.getElementById('audioControl');
+        const anthem = document.getElementById('anthem');
+        let isPlaying = false;
+        
+        audioControl.addEventListener('click', () => {
+            if (isPlaying) {
+                anthem.pause();
+                audioControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            } else {
+                anthem.play();
+                audioControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+            }
+            isPlaying = !isPlaying;
+        });
+        
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Animate timeline items on scroll
+        gsap.utils.toArray('.timeline-content').forEach(item => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 80%"
+                },
+                opacity: 0,
+                y: 50,
+                duration: 0.8
+            });
+        });
+        
+        // Animate gallery items on scroll
+        gsap.utils.toArray('.gallery-item').forEach(item => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 90%"
+                },
+                opacity: 0,
+                y: 30,
+                duration: 0.6,
+                stagger: 0.2
+            });
+        });
+        
+        // Animate flying doves
+        gsap.to('.dove', {
+            y: -30,
+            repeat: -1,
+            yoyo: true,
+            duration: 3,
+            ease: "power1.inOut"
+        });
+    </script>
+</body>
+</html>
