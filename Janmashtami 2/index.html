@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>श्री कृष्ण जन्माष्टमी</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a237e, #311b92, #4a148c);
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        #three-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 0 30px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+            background: linear-gradient(to right, #ffd700, #ff9800, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Cambria', 'Cochin', Georgia, Times, 'Times New Roman', serif;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: #e0e0e0;
+        }
+
+        .section {
+            background: rgba(25, 25, 112, 0.7);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #ffd700;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #ffd700, #ff9800, #ffd700);
+            border-radius: 2px;
+        }
+
+        .wishing-text {
+            font-size: 2.2rem;
+            text-align: center;
+            line-height: 1.6;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 15px;
+            border-left: 5px solid #ffd700;
+        }
+
+        .hindi-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            text-align: justify;
+            direction: rtl;
+            font-family: 'Nirmala UI', 'Arial', sans-serif;
+        }
+
+        .blessing-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .blessing-card {
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            width: 80%;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .blessing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 215, 0, 0.15);
+        }
+
+        .blessing-text {
+            font-size: 1.4rem;
+            text-align: center;
+            font-style: italic;
+            color: #fff;
+        }
+
+        .blessing-author {
+            text-align: right;
+            margin-top: 15px;
+            color: #ffd700;
+            font-size: 1.2rem;
+        }
+
+        .flute {
+            position: absolute;
+            width: 100px;
+            height: 300px;
+            top: 50px;
+            right: 50px;
+            opacity: 0.3;
+            transform: rotate(15deg);
+            z-index: -1;
+        }
+
+        .peacock-feather {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            bottom: 50px;
+            left: 50px;
+            opacity: 0.2;
+            transform: rotate(-20deg);
+            z-index: -1;
+        }
+
+        .lotus {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            bottom: 100px;
+            right: 80px;
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        .decorative-element {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #aaa;
+            font-size: 1.1rem;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .krishna-icon {
+            width: 100px;
+            margin: 0 auto 20px;
+            display: block;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .wishing-text {
+                font-size: 1.5rem;
+            }
+            
+            .hindi-text {
+                font-size: 1.1rem;
+            }
+            
+            .blessing-text {
+                font-size: 1.2rem;
+            }
+            
+            .flute, .peacock-feather, .lotus {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="three-container"></div>
+    
+    <div class="container">
+        <header>
+            <h1>श्री कृष्ण जन्माष्टमी</h1>
+            <div class="subtitle">भगवान श्रीकृष्ण के जन्मोत्सव की हार्दिक शुभकामनाएं</div>
+            <svg class="krishna-icon" viewBox="0 0 24 24">
+                <path fill="#FFD700" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A1,1 0 0,0 11,7A1,1 0 0,0 12,8A1,1 0 0,0 13,7A1,1 0 0,0 12,6M6,10A1,1 0 0,0 5,11A1,1 0 0,0 6,12A1,1 0 0,0 7,11A1,1 0 0,0 6,10M18,10A1,1 0 0,0 17,11A1,1 0 0,0 18,12A1,1 0 0,0 19,11A1,1 0 0,0 18,10M8,17A1,1 0 0,0 7,18A1,1 0 0,0 8,19A1,1 0 0,0 9,18A1,1 0 0,0 8,17M16,17A1,1 0 0,0 15,18A1,1 0 0,0 16,19A1,1 0 0,0 17,18A1,1 0 0,0 16,17M12,14C9.24,14 7,12.21 7,10H17C17,12.21 14.76,14 12,14Z" />
+            </svg>
+        </header>
+        
+        <div class="section">
+            <h2 class="section-title">शुभकामनाएं</h2>
+            <div class="wishing-text">
+                🌟 जन्माष्टमी की हार्दिक शुभकामनाएं 🌟<br>
+                भगवान कृष्ण आपके जीवन में प्रेम, खुशियाँ और समृद्धि लाएँ!
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">जन्माष्टमी के बारे में</h2>
+            <div class="hindi-text">
+                जन्माष्टमी हिन्दू धर्म का एक प्रमुख त्योहार है। यह भगवान विष्णु के आठवें अवतार श्रीकृष्ण के जन्मोत्सव के रूप में मनाया जाता है। श्रीकृष्ण का जन्म भाद्रपद मास के कृष्ण पक्ष की अष्टमी तिथि की रात्रि को मथुरा में हुआ था। 
+                
+                इस दिन भक्तजन व्रत रखते हैं और आधी रात को, जब श्रीकृष्ण का जन्म हुआ था, उस समय पूजा-अर्चना की जाती है। मंदिरों को सजाया जाता है और भगवान कृष्ण को झूला झुलाया जाता है। दही हांडी प्रतियोगिता इस पर्व का प्रमुख आकर्षण होती है जिसमें युवक मटकी फोड़ने का प्रयास करते हैं।
+                
+                जन्माष्टमी का पर्व भारत के साथ-साथ विश्व के अनेक देशों में धूमधाम से मनाया जाता है। यह पर्व हमें श्रीकृष्ण के जीवन से प्रेरणा लेने की प्रेरणा देता है और सत्य, धर्म एवं न्याय के मार्ग पर चलने की शिक्षा देता है।
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">श्री कृष्ण का आशीर्वाद</h2>
+            <div class="blessing-container">
+                <div class="blessing-card">
+                    <div class="blessing-text">"जो भी मेरे साथ प्रेम से आता है, मैं उसे कभी नहीं छोड़ता।"</div>
+                    <div class="blessing-author">- श्रीमद्भगवद्गीता</div>
+                </div>
+                
+                <div class="blessing-card">
+                    <div class="blessing-text">"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।"<br>(तू केवल कर्म करने का अधिकारी है, उसके फलों में कभी नहीं)</div>
+                    <div class="blessing-author">- श्री कृष्ण</div>
+                </div>
+                
+                <div class="blessing-card">
+                    <div class="blessing-text">"मनुष्य की इच्छाएं कभी समाप्त नहीं होतीं। जिस प्रकार अग्नि में घी डालने से वह और प्रज्वलित होती है, उसी प्रकार इच्छाएं पूर्ति होने पर और बढ़ती हैं।"</div>
+                    <div class="blessing-author">- श्री कृष्ण</div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            © 2023 श्री कृष्ण जन्माष्टमी | सभी को जन्माष्टमी की हार्दिक शुभकामनाएं
+        </footer>
+    </div>
+    
+    <!-- Decorative elements -->
+    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMzAwIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNNTAgMTBDMzAgMTAgMTAgMzAgMTAgNTB2MjAwYzAgMjAgMjAgNDAgNDAgNDBzNDAtMjAgNDAtNDBWNTBjMC0yMC0yMC00MC00MC00MHoiLz48L3N2Zz4=" class="flute decorative-element">
+    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNTAgMTUwIj48Y2lyY2xlIGN4PSI3NSIgY3k9Ijc1IiByPSI0MCIgZmlsbD0iIzAwRkYwMCIvPjxwYXRoIGZpbGw9IiMwMDc3RkYiIGQ9Ik03NSAxMTV2LTQwbC0zMCAzMGg2MHoiLz48L3N2Zz4=" class="peacock-feather decorative-element">
+    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cGF0aCBmaWxsPSIjRkYwMEZGIiBkPSJNNjAgMjBjLTIwIDAtMzAgMjAtMzAgNDBzMTAgNDAgMzAgNDAgMzAtMjAgMzAtNDAtMTAtNDAtMzAtNDB6Ii8+PHBhdGggZmlsbD0iI0ZGMDBGRiIgZD0iTTYwIDYwYzIwIDAgNDAgMTAgNDAgMzBzLTIwIDMwLTQwIDMwLTMwLTIwLTMwLTMwIDIwLTMwIDMwLTMweiIvPjwvc3ZnPg==" class="lotus decorative-element">
+    
+    <script>
+        // Three.js Scene Setup
+        let scene, camera, renderer, particles;
+        
+        function initThreeJS() {
+            // Create scene
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x0a0a2a);
+            
+            // Create camera
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 30;
+            
+            // Create renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            document.getElementById('three-container').appendChild(renderer.domElement);
+            
+            // Add ambient light
+            const ambientLight = new THREE.AmbientLight(0x333366);
+            scene.add(ambientLight);
+            
+            // Add directional light
+            const directionalLight = new THREE.DirectionalLight(0xffd700, 1);
+            directionalLight.position.set(5, 5, 5);
+            scene.add(directionalLight);
+            
+            // Create particles
+            createParticles();
+            
+            // Create floating elements
+            createFloatingElements();
+            
+            // Handle window resize
+            window.addEventListener('resize', onWindowResize);
+            
+            // Start animation
+            animate();
+        }
+        
+        function createParticles() {
+            const particleCount = 1000;
+            const particlesGeometry = new THREE.BufferGeometry();
+            const particlesMaterial = new THREE.PointsMaterial({
+                color: 0x8888ff,
+                size: 0.1,
+                transparent: true,
+                blending: THREE.AdditiveBlending
+            });
+            
+            const posArray = new Float32Array(particleCount * 3);
+            
+            for(let i = 0; i < particleCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 100;
+            }
+            
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+            particles = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(particles);
+        }
+        
+        function createFloatingElements() {
+            // Create floating flutes
+            for(let i = 0; i < 5; i++) {
+                const fluteGeometry = new THREE.CylinderGeometry(0.2, 0.2, 5, 16);
+                const fluteMaterial = new THREE.MeshBasicMaterial({ 
+                    color: 0xffffff,
+                    transparent: true,
+                    opacity: 0.3
+                });
+                const flute = new THREE.Mesh(fluteGeometry, fluteMaterial);
+                
+                // Position randomly
+                flute.position.x = (Math.random() - 0.5) * 50;
+                flute.position.y = (Math.random() - 0.5) * 30;
+                flute.position.z = (Math.random() - 0.5) * 20;
+                
+                // Rotate to horizontal position
+                flute.rotation.x = Math.PI / 2;
+                
+                // Add to scene
+                scene.add(flute);
+                
+                // Animate floating
+                gsap.to(flute.position, {
+                    y: flute.position.y + 2,
+                    duration: 3,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut"
+                });
+                
+                gsap.to(flute.rotation, {
+                    z: Math.PI * 2,
+                    duration: 20,
+                    repeat: -1,
+                    ease: "none"
+                });
+            }
+        }
+        
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Rotate particles
+            particles.rotation.x += 0.001;
+            particles.rotation.y += 0.002;
+            
+            renderer.render(scene, camera);
+        }
+        
+        // Initialize when page loads
+        window.addEventListener('load', () => {
+            initThreeJS();
+            
+            // Animate decorative elements
+            animateDecorativeElements();
+            
+            // Add blessing card animations
+            document.querySelectorAll('.blessing-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    gsap.to(card, {
+                        scale: 0.95,
+                        duration: 0.2,
+                        yoyo: true,
+                        repeat: 1
+                    });
+                });
+            });
+        });
+        
+        function animateDecorativeElements() {
+            // Animate decorative elements
+            gsap.to('.flute', {
+                rotation: 20,
+                duration: 15,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+            
+            gsap.to('.peacock-feather', {
+                y: 20,
+                duration: 8,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+            
+            gsap.to('.lotus', {
+                rotation: 360,
+                duration: 40,
+                repeat: -1,
+                ease: "none"
+            });
+            
+            // Animate section titles
+            gsap.from('.section-title', {
+                opacity: 0,
+                y: 30,
+                duration: 1,
+                stagger: 0.3
+            });
+            
+            // Animate blessing cards
+            gsap.from('.blessing-card', {
+                opacity: 0,
+                x: -50,
+                duration: 1,
+                stagger: 0.2,
+                delay: 0.5
+            });
+        }
+    </script>
+</body>
+</html>
