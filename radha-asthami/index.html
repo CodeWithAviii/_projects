@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radha Ashtami - Celebrating Divine Love</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;600;700&family=Cinzel:wght@400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+        }
+        
+        .hero-section {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><defs><radialGradient id="g1" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffd700" stop-opacity="0.1"/><stop offset="100%" stop-color="%230f3460" stop-opacity="0.8"/></radialGradient></defs><rect width="100%" height="100%" fill="url(%23g1)"/></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            text-align: center;
+            background: linear-gradient(45deg, #ffd700, #ff6b9d, #00d4ff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-top: 20px;
+            color: #ffd700;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        @keyframes glow {
+            from { background-position: 0% 50%; }
+            to { background-position: 100% 50%; }
+        }
+        
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .morpankh {
+            position: absolute;
+            font-size: 2rem;
+            color: #00d4ff;
+            opacity: 0.7;
+        }
+        
+        .flower {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.8;
+        }
+        
+        .lotus { color: #ff6b9d; }
+        .marigold { color: #ffa500; }
+        
+        .radhe-text {
+            position: absolute;
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            font-size: 1.2rem;
+            color: #ffd700;
+            opacity: 0;
+            font-weight: 600;
+        }
+        
+        .section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .radha-krishna-section {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(0, 212, 255, 0.1));
+            border-radius: 30px;
+            padding: 80px 40px;
+            margin: 50px 20px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .divine-image {
+            width: 300px;
+            height: 400px;
+            margin: 0 auto 40px;
+            background: linear-gradient(45deg, #ff6b9d, #ffd700, #00d4ff);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.4);
+        }
+        
+        .divine-image::before {
+            content: "🕉️\A💕 राधे कृष्ण 💕";
+            white-space: pre;
+            font-size: 2rem;
+            text-align: center;
+            line-height: 1.5;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .music-toggle {
+            background: linear-gradient(45deg, #ffd700, #ff6b9d);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .music-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .shloka-section {
+            background: rgba(255, 215, 0, 0.05);
+            padding: 60px 40px;
+            border-radius: 20px;
+            margin: 50px 0;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .shloka-card {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(0, 212, 255, 0.1));
+            padding: 40px;
+            margin: 30px 0;
+            border-radius: 15px;
+            border-left: 5px solid #ffd700;
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+        
+        .shloka-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .shloka-meaning {
+            font-size: 1rem;
+            color: #e0e0e0;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        .festival-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .info-card {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 107, 157, 0.1));
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            transform: translateY(50px);
+            opacity: 0;
+        }
+        
+        .info-card h3 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-family: 'Cinzel', serif;
+        }
+        
+        .info-card p {
+            line-height: 1.6;
+            color: #e0e0e0;
+        }
+        
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 40px;
+            background: linear-gradient(45deg, #ffd700, #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .blessings-section {
+            text-align: center;
+            padding: 100px 40px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(15, 52, 96, 0.8));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blessings-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><defs><radialGradient id="star" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffd700" stop-opacity="0.8"/><stop offset="100%" stop-color="%23ffd700" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="150" r="2" fill="url(%23star)"/><circle cx="800" cy="300" r="1.5" fill="url(%23star)"/><circle cx="1400" cy="200" r="2" fill="url(%23star)"/><circle cx="600" cy="500" r="1" fill="url(%23star)"/><circle cx="1200" cy="600" r="2" fill="url(%23star)"/><circle cx="400" cy="700" r="1.5" fill="url(%23star)"/><circle cx="1600" cy="800" r="1" fill="url(%23star)"/></svg>');
+            animation: twinkle 4s ease-in-out infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        .blessing-text {
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        
+        .diya {
+            display: inline-block;
+            font-size: 2rem;
+            margin: 0 20px;
+            animation: flicker 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes flicker {
+            0% { transform: scale(1) rotateZ(-2deg); }
+            100% { transform: scale(1.1) rotateZ(2deg); }
+        }
+        
+        .audio-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 215, 0, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 10px 15px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            color: #ffd700;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .blessing-text {
+                font-size: 1.5rem;
+            }
+            
+            .divine-image {
+                width: 250px;
+                height: 300px;
+            }
+        }
+        
+        .significance-section {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(255, 107, 157, 0.05));
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin: 50px 0;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .significance-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #e8e8e8;
+            text-align: justify;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Audio Controls -->
+    <div class="audio-control" onclick="toggleAudio()">
+        🎵 Temple Bells <span id="audio-status">(Click to Play)</span>
+    </div>
+    
+    <!-- Floating Divine Elements -->
+    <div class="floating-elements">
+        <div class="morpankh" style="top: 20%; left: 10%;">🪶</div>
+        <div class="morpankh" style="top: 60%; right: 15%;">🪶</div>
+        <div class="morpankh" style="top: 80%; left: 70%;">🪶</div>
+        
+        <div class="flower lotus" style="top: 30%; left: 20%;">🪷</div>
+        <div class="flower lotus" style="top: 70%; right: 25%;">🪷</div>
+        <div class="flower marigold" style="top: 40%; right: 10%;">🌼</div>
+        <div class="flower marigold" style="top: 85%; left: 30%;">🌼</div>
+        
+        <div class="radhe-text" style="top: 25%; left: 60%;">राधे राधे</div>
+        <div class="radhe-text" style="top: 55%; left: 15%;">राधे श्याम</div>
+        <div class="radhe-text" style="top: 75%; right: 30%;">हरे कृष्ण</div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div>
+            <h1 class="hero-title">Radha Ashtami</h1>
+            <p class="hero-subtitle">Celebrating Divine Love & Pure Devotion</p>
+        </div>
+    </section>
+    
+    <!-- Radha-Krishna Section -->
+    <section class="section">
+        <div class="radha-krishna-section">
+            <div class="divine-image"></div>
+            <h2 style="font-family: 'Cinzel', serif; font-size: 2.5rem; color: #ffd700; margin-bottom: 30px;">श्री राधा कृष्ण</h2>
+            <p style="font-size: 1.2rem; line-height: 1.8; color: #e8e8e8; max-width: 800px; margin: 0 auto;">
+                On this sacred day of Radha Ashtami, we celebrate the divine appearance of Shrimati Radharani, 
+                the embodiment of pure love and devotion. Her eternal bond with Lord Krishna represents the 
+                highest form of spiritual love that transcends all material boundaries.
+            </p>
+            <button class="music-toggle" onclick="toggleFlute()">
+                🎶 Play Divine Flute <span id="flute-status"></span>
+            </button>
+        </div>
+    </section>
+    
+    <!-- Significance Section -->
+    <section class="section">
+        <h2 class="section-title">Divine Significance</h2>
+        <div class="significance-section">
+            <div class="significance-content">
+                <p><strong>Radha Ashtami</strong> marks the sacred appearance day of <strong>Shrimati Radharani</strong>, 
+                the eternal consort of Lord Krishna and the personification of <strong>pure devotion, unconditional love, 
+                and divine grace</strong>. This auspicious day falls on the <strong>Ashtami (eighth day) of Shukla Paksha 
+                in the Bhadrapada month</strong>, filling the hearts of devotees worldwide with spiritual joy.</p>
+                
+                <p style="margin-top: 25px;">Devotees observe this holy day by keeping fasts, singing melodious 
+                <strong>bhajans and kirtans</strong>, and making pilgrimages to sacred places like <strong>Barsana and Vrindavan</strong>. 
+                They offer fresh flowers, morpankh (peacock feathers), and heartfelt prayers, seeking Radharani's 
+                blessings for spiritual advancement and divine love.</p>
+                
+                <p style="margin-top: 25px;">Radharani represents the soul's longing for the Divine, teaching us that 
+                true love is selfless, pure, and dedicated entirely to the beloved. Her divine pastimes with Krishna 
+                in the sacred groves of Vrindavan continue to inspire millions of souls on their spiritual journey.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Shlokas Section -->
+    <section class="section">
+        <h2 class="section-title">Sacred Mantras</h2>
+        <div class="shloka-section">
+            <div class="shloka-card">
+                <div class="shloka-text">राधे राधे गोविन्द, राधे राधे श्याम</div>
+                <div class="shloka-meaning">Radhe Radhe Govinda, Radhe Radhe Shyam</div>
+                <div class="diya">🪔</div>
+            </div>
+            
+            <div class="shloka-card">
+                <div class="shloka-text">श्री राधा माधव कुञ्ज बिहारी</div>
+                <div class="shloka-meaning">Sri Radha Madhava Kunja Bihari - The Divine Couple enjoying in the sacred groves</div>
+                <div class="diya">🪔</div>
+            </div>
+            
+            <div class="shloka-card">
+                <div class="shloka-text">राधिका मोहन लीला गोपाल</div>
+                <div class="shloka-meaning">Radhika Mohana Lila Gopala - The enchanting pastimes of Radha and Krishna</div>
+                <div class="diya">🪔</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Festival Celebrations -->
+    <section class="section">
+        <h2 class="section-title">Celebration Traditions</h2>
+        <div class="festival-info">
+            <div class="info-card">
+                <h3>🏛️ Sacred Temples</h3>
+                <p>Devotees visit holy places like Barsana (Radharani's birthplace), Vrindavan, and Mathura. 
+                Temples are beautifully decorated with flowers, and special aartis are performed throughout the day.</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>🌸 Divine Offerings</h3>
+                <p>Fresh flowers, especially lotus and marigold, morpankh (peacock feathers), sweets like kheer 
+                and peda, and fragrant incense are lovingly offered to Radharani's divine form.</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>🎵 Devotional Songs</h3>
+                <p>Melodious bhajans and kirtans fill the air as devotees sing about Radha-Krishna's divine love. 
+                The sound of "Radhe Radhe" resonates in homes and temples across the world.</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>🕯️ Spiritual Practices</h3>
+                <p>Many devotees observe fasting, engage in meditation on Radharani's divine qualities, 
+                and read scriptures that glorify her pure love and devotion to Krishna.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Blessings Section -->
+    <section class="blessings-section">
+        <div class="blessing-text">🌺 May Shrimati Radharani bless you with eternal love and devotion 🌺</div>
+        <p style="font-size: 1.2rem; margin-top: 20px; opacity: 0;" id="blessing-subtitle">
+            May your heart be filled with the divine nectar of Krishna consciousness
+        </p>
+        <div style="margin-top: 40px; opacity: 0;" id="blessing-diyas">
+            <span class="diya">🪔</span>
+            <span class="diya">🪔</span>
+            <span class="diya">🪔</span>
+            <span class="diya">🪔</span>
+            <span class="diya">🪔</span>
+        </div>
+        <p style="margin-top: 30px; font-style: italic; color: #ffd700; opacity: 0;" id="final-blessing">
+            राधे राधे 🙏
+        </p>
+    </section>
+    
+    <!-- Audio Elements -->
+    <audio id="temple-bells" loop>
+        <!-- Note: In a real implementation, you would add temple bell audio file here -->
+    </audio>
+    
+    <audio id="flute-music" loop>
+        <!-- Note: In a real implementation, you would add flute music file here -->
+    </audio>
+
+    <script>
+        // Register ScrollTrigger plugin
+        gsap.registerPlugin(ScrollTrigger);
+        
+        let templeBellsPlaying = false;
+        let fluteePlaying = false;
+        
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initAnimations();
+        });
+        
+        function initAnimations() {
+            // Hero section animations
+            gsap.to('.hero-title', {
+                opacity: 1,
+                y: 0,
+                duration: 2,
+                ease: 'power2.out',
+                delay: 0.5
+            });
+            
+            gsap.to('.hero-subtitle', {
+                opacity: 1,
+                y: 0,
+                duration: 1.5,
+                ease: 'power2.out',
+                delay: 1.5
+            });
+            
+            // Floating elements animations
+            animateFloatingElements();
+            
+            // Divine image glow animation
+            gsap.to('.divine-image', {
+                boxShadow: '0 0 80px rgba(255, 215, 0, 0.6), 0 0 120px rgba(255, 107, 157, 0.4)',
+                duration: 3,
+                ease: 'power2.inOut',
+                yoyo: true,
+                repeat: -1
+            });
+            
+            // Section titles scroll animation
+            gsap.utils.toArray('.section-title').forEach(title => {
+                gsap.fromTo(title, {
+                    opacity: 0,
+                    y: 50
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.5,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: title,
+                        start: 'top 80%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play none none reverse'
+                    }
+                });
+            });
+            
+            // Significance content animation
+            gsap.to('.significance-content', {
+                opacity: 1,
+                y: 0,
+                duration: 2,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: '.significance-content',
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+            
+            // Shloka cards animation
+            gsap.utils.toArray('.shloka-card').forEach((card, index) => {
+                gsap.to(card, {
+                    opacity: 1,
+                    x: 0,
+                    duration: 1.5,
+                    ease: 'power2.out',
+                    delay: index * 0.3,
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 85%',
+                        end: 'bottom 15%',
+                        toggleActions: 'play none none reverse'
+                    }
+                });
+                
+                // Diya flicker animation for each card
+                gsap.to(card.querySelector('.diya'), {
+                    scale: 1.2,
+                    duration: 1.5,
+                    ease: 'power2.inOut',
+                    yoyo: true,
+                    repeat: -1,
+                    delay: index * 0.5
+                });
+            });
+            
+            // Info cards animation
+            gsap.utils.toArray('.info-card').forEach((card, index) => {
+                gsap.to(card, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.5,
+                    ease: 'power2.out',
+                    delay: index * 0.2,
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 85%',
+                        end: 'bottom 15%',
+                        toggleActions: 'play none none reverse'
+                    }
+                });
+            });
+            
+            // Blessings section animation
+            const blessingsTimeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.blessings-section',
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+            
+            blessingsTimeline
+                .to('.blessing-text', {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 2,
+                    ease: 'power2.out'
+                })
+                .to('#blessing-subtitle', {
+                    opacity: 1,
+                    duration: 1.5,
+                    ease: 'power2.out'
+                }, '-=1')
+                .to('#blessing-diyas', {
+                    opacity: 1,
+                    duration: 1.5,
+                    ease: 'power2.out'
+                }, '-=0.5')
+                .to('#final-blessing', {
+                    opacity: 1,
+                    duration: 1.5,
+                    ease: 'power2.out'
+                }, '-=0.5');
+        }
+        
+        function animateFloatingElements() {
+            // Morpankh floating animation
+            gsap.utils.toArray('.morpankh').forEach((feather, index) => {
+                gsap.to(feather, {
+                    y: "+=30",
+                    rotation: "+=10",
+                    duration: 3 + index * 0.5,
+                    ease: 'power2.inOut',
+                    yoyo: true,
+                    repeat: -1,
+                    delay: index * 0.7
+                });
+                
+                gsap.to(feather, {
+                    x: "+=20",
+                    duration: 4 + index * 0.3,
+                    ease: 'power2.inOut',
+                    yoyo: true,
+                    repeat: -1,
+                    delay: index * 0.5
+                });
+            });
+            
+            // Flower floating animation
+            gsap.utils.toArray('.flower').forEach((flower, index) => {
+                gsap.fromTo(flower, {
+                    y: -100,
+                    opacity: 0
+                }, {
+                    y: window.innerHeight + 100,
+                    opacity: 1,
+                    duration: 8 + Math.random() * 4,
+                    ease: 'none',
+                    repeat: -1,
+                    delay: index * 2,
+                    onRepeat: function() {
+                        // Randomize horizontal position on repeat
+                        gsap.set(flower, {
+                            x: Math.random() * window.innerWidth
+                        });
+                    }
+                });
+                
+                // Gentle swaying motion
+                gsap.to(flower, {
+                    x: "+=30",
+                    duration: 3 + Math.random() * 2,
+                    ease: 'power2.inOut',
+                    yoyo: true,
+                    repeat: -1
+                });
+            });
+            
+            // Radhe text animation
+            gsap.utils.toArray('.radhe-text').forEach((text, index) => {
+                gsap.fromTo(text, {
+                    opacity: 0,
+                    scale: 0.8
+                }, {
+                    opacity: 0.8,
+                    scale: 1,
+                    duration: 2,
+                    ease: 'power2.out',
+                    yoyo: true,
+                    repeat: -1,
+                    delay: index * 1.5
+                });
+            });
+        }
+        
+        function toggleAudio() {
+            const audio = document.getElementById('temple-bells');
+            const status = document.getElementById('audio-status');
+            
+            if (!templeBellsPlaying) {
+                // Create a synthetic bell sound using Web Audio API
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                createBellSound(audioContext);
+                status.textContent = '(Playing)';
+                templeBellsPlaying = true;
+                
+                // Auto-stop after 10 seconds for demo
+                setTimeout(() => {
+                    status.textContent = '(Click to Play)';
+                    templeBellsPlaying = false;
+                }, 10000);
+            } else {
+                status.textContent = '(Click to Play)';
+                templeBellsPlaying = false;
+            }
+        }
+        
+        function toggleFlute() {
+            const status = document.getElementById('flute-status');
+            const button = event.target;
+            
+            if (!fluteePlaying) {
+                // Create synthetic flute sound
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                createFluteSound(audioContext);
+                status.textContent = '(Playing)';
+                button.innerHTML = '🎶 Stop Divine Flute <span id="flute-status">(Playing)</span>';
+                fluteePlaying = true;
+                
+                // Auto-stop after 8 seconds for demo
+                setTimeout(() => {
+                    status.textContent = '';
+                    button.innerHTML = '🎶 Play Divine Flute <span id="flute-status"></span>';
+                    fluteePlaying = false;
+                }, 8000);
+            } else {
+                status.textContent = '';
+                button.innerHTML = '🎶 Play Divine Flute <span id="flute-status"></span>';
+                fluteePlaying = false;
+            }
+        }
+        
+        function createBellSound(audioContext) {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(200, audioContext.currentTime + 2);
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 3);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 3);
+            
+            // Create additional harmonics for richer bell sound
+            setTimeout(() => {
+                const oscillator2 = audioContext.createOscillator();
+                const gainNode2 = audioContext.createGain();
+                
+                oscillator2.connect(gainNode2);
+                gainNode2.connect(audioContext.destination);
+                
+                oscillator2.frequency.setValueAtTime(1200, audioContext.currentTime);
+                oscillator2.frequency.exponentialRampToValueAtTime(300, audioContext.currentTime + 2);
+                
+                gainNode2.gain.setValueAtTime(0.2, audioContext.currentTime);
+                gainNode2.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 2.5);
+                
+                oscillator2.start(audioContext.currentTime);
+                oscillator2.stop(audioContext.currentTime + 2.5);
+            }, 1000);
+        }
+        
+        function createFluteSound(audioContext) {
+            // Create a gentle flute-like sound
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            const filter = audioContext.createBiquadFilter();
+            
+            oscillator.connect(filter);
+            filter.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.type = 'sine';
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(2000, audioContext.currentTime);
+            
+            // Play a simple melody
+            const notes = [523.25, 587.33, 659.25, 698.46, 783.99, 880.00]; // C, D, E, F, G, A
+            let noteIndex = 0;
+            
+            function playNote() {
+                if (noteIndex < notes.length && fluteePlaying) {
+                    oscillator.frequency.setValueAtTime(notes[noteIndex], audioContext.currentTime);
+                    gainNode.gain.setValueAtTime(0.15, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
+                    
+                    noteIndex++;
+                    if (noteIndex >= notes.length) noteIndex = 0;
+                    
+                    setTimeout(playNote, 1200);
+                }
+            }
+            
+            oscillator.start(audioContext.currentTime);
+            playNote();
+            
+            setTimeout(() => {
+                if (oscillator) oscillator.stop();
+            }, 8000);
+        }
+        
+        // Particle system for divine energy
+        function createDivineParticles() {
+            const particleContainer = document.createElement('div');
+            particleContainer.style.position = 'fixed';
+            particleContainer.style.top = '0';
+            particleContainer.style.left = '0';
+            particleContainer.style.width = '100%';
+            particleContainer.style.height = '100%';
+            particleContainer.style.pointerEvents = 'none';
+            particleContainer.style.zIndex = '1';
+            document.body.appendChild(particleContainer);
+            
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.innerHTML = '✨';
+                particle.style.position = 'absolute';
+                particle.style.fontSize = Math.random() * 20 + 10 + 'px';
+                particle.style.color = `hsl(${Math.random() * 60 + 40}, 70%, 70%)`;
+                particle.style.left = Math.random() * window.innerWidth + 'px';
+                particle.style.top = '-20px';
+                particle.style.pointerEvents = 'none';
+                
+                particleContainer.appendChild(particle);
+                
+                gsap.to(particle, {
+                    y: window.innerHeight + 50,
+                    x: `+=${Math.random() * 200 - 100}`,
+                    rotation: Math.random() * 360,
+                    opacity: 0,
+                    duration: Math.random() * 3 + 3,
+                    ease: 'power2.out',
+                    onComplete: () => {
+                        particleContainer.removeChild(particle);
+                    }
+                });
+            }
+            
+            // Create particles periodically
+            setInterval(createParticle, 2000);
+        }
+        
+        // Start particle system
+        setTimeout(createDivineParticles, 2000);
+        
+        // Scroll-based animations
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            
+            // Parallax effect for hero section
+            const hero = document.querySelector('.hero-section');
+            if (hero) {
+                hero.style.transform = `translateY(${rate}px)`;
+            }
+        });
+        
+        // Add hover effects for interactive elements
+        document.querySelectorAll('.info-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                gsap.to(this, {
+                    scale: 1.05,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                gsap.to(this, {
+                    scale: 1,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            });
+        });
+        
+        // Divine energy pulses
+        function createEnergyPulse() {
+            const pulse = document.createElement('div');
+            pulse.style.position = 'absolute';
+            pulse.style.width = '10px';
+            pulse.style.height = '10px';
+            pulse.style.background = 'radial-gradient(circle, rgba(255,215,0,0.8) 0%, rgba(255,107,157,0.4) 50%, transparent 100%)';
+            pulse.style.borderRadius = '50%';
+            pulse.style.left = Math.random() * window.innerWidth + 'px';
+            pulse.style.top = Math.random() * window.innerHeight + 'px';
+            pulse.style.pointerEvents = 'none';
+            pulse.style.zIndex = '1';
+            
+            document.body.appendChild(pulse);
+            
+            gsap.fromTo(pulse, {
+                scale: 0,
+                opacity: 1
+            }, {
+                scale: 10,
+                opacity: 0,
+                duration: 2,
+                ease: 'power2.out',
+                onComplete: () => {
+                    document.body.removeChild(pulse);
+                }
+            });
+        }
+        
+        // Create energy pulses periodically
+        setInterval(createEnergyPulse, 3000);
+        
+        // Animate page elements on load
+        gsap.from('.audio-control', {
+            y: -50,
+            opacity: 0,
+            duration: 1,
+            delay: 2,
+            ease: 'power2.out'
+        });
+    </script>
+</body>
+</html>
